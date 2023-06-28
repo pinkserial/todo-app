@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0deg 0% 98%;
+    --background-image: url("/images/bg-mobile-light.jpg");
+
+    --check-background-from: 192deg 100% 67%;
+    --check-background-to: 280deg 87% 65%;
+  }
+
+  .dark {
+    --background: 235deg 21% 11%;
+    --background-image: url("/images/bg-mobile-dark.jpg");
+  }
+
+  @media screen(sm) {
+    :root {
+      --background-image: url("/images/bg-desktop-light.jpg");
+    }
+
+    .dark {
+      --background-image: url("/images/bg-desktop-dark.jpg");
+    }
+  }
+}
+
+@layer base {
+  body {
+    @apply h-screen bg-background bg-header bg-no-repeat bg-contain;
+  }
+}
