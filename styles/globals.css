@@ -6,7 +6,11 @@
   :root {
     --background: 0deg 0% 98%;
     --background-image: url("/images/bg-mobile-light.jpg");
-
+    --foreground: 236 9% 61%;
+    --content: 0 0% 100%;
+    --filter: 233 11% 84%;
+    --filter-hover: 235 19% 35%;
+    --completed: 236 33% 92%;
     --check-background-from: 192deg 100% 67%;
     --check-background-to: 280deg 87% 65%;
   }
@@ -14,6 +18,12 @@
   .dark {
     --background: 235deg 21% 11%;
     --background-image: url("/images/bg-mobile-dark.jpg");
+
+    --foreground: 236 33% 92%;
+    --content: 237 14% 26%;
+    --filter: 234 11% 52%;
+    --filter-hover: 236 33% 92%;
+    --completed: 233 14% 35%
   }
 
   @media screen(sm) {
