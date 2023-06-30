@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function CheckBtn({
   isCompleted,
-  onChange
+  onChange,
 }: {
   isCompleted: boolean;
   onChange?: () => void;
@@ -13,14 +13,20 @@ export default function CheckBtn({
     : "bg-content border";
 
   return (
-    <button type="button" className={clsx("w-6 h-6 rounded-full", background)} onClick={onChange}>
-      <Image
-        className="mx-auto"
-        src="/images/icon-check.svg"
-        alt="check icon"
-        width={11}
-        height={9}
-      />
+    <button
+      type="button"
+      className={clsx("w-6 h-6 rounded-full", background)}
+      onClick={onChange}
+    >
+      {isCompleted && (
+        <Image
+          className="mx-auto"
+          src="/images/icon-check.svg"
+          alt="check icon"
+          width={11}
+          height={9}
+        />
+      )}
     </button>
   );
 }

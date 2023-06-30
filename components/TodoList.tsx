@@ -32,6 +32,25 @@ export default function TodoList() {
     setTodoList(todoList.filter((t) => t.id !== todo.id));
   }
 
+  function handleExchange(p: string, c: string) {
+    const prevTodoIdx = todoList.findIndex((todo) => todo.id === p);
+    const currentTodoIdx = todoList.findIndex((todo) => todo.id === c);
+
+    const newTodoList = todoList.map((todo, idx) => {
+      if (idx === prevTodoIdx) {
+        return todoList[currentTodoIdx];
+      }
+
+      if (idx === currentTodoIdx) {
+        return todoList[prevTodoIdx];
+      }
+
+      return todo;
+    });
+
+    setTodoList(newTodoList);
+  }
+
   useEffect(() => {
     const todoList = localStorage.todoList;
     if (todoList) {
@@ -47,15 +66,15 @@ export default function TodoList() {
     <>
       <CreateTodo onSubmit={handleSubmit} />
       <div className="bg-content my-5 rounded-md divide-y shadow-lg">
-        <ol className="divide-y text-lg">
+        <ol className="divide-y text-lg text-foreground">
           {filteredList.length > 0 ? (
             filteredList.map((todo) => (
               <Todo
                 key={todo.id}
-                title={todo.title}
-                isCompleted={todo.isCompleted}
+                data={todo}
                 onChange={() => handleToggleComplete(todo)}
                 onDelete={() => handleDelete(todo)}
+                onExchange={handleExchange}
               />
             ))
           ) : (
