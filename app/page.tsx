@@ -6,6 +6,7 @@ export default function Home() {
     <main className="w-1/2 mx-auto">
       <Header />
       <TodoList/>
+      <p className="text-center text-filter">Drag and drop to reorder list</p>
     </main>
   );
 }

@@ -11,7 +11,7 @@ export default function CreateTodo({
 
   return (
     <form
-      className="px-5 flex items-center bg-content gap-5 rounded-md"
+      className="pl-5 flex items-center bg-content gap-5 rounded-md overflow-hidden"
       onSubmit={(e) => {
         e.preventDefault();
         onSubmit(title);

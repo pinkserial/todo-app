@@ -3,15 +3,13 @@ import { useEffect, useState } from "react";
 import Todo from "./Todo";
 import CreateTodo from "./CreateTodo";
 import { v4 as uuidv4 } from "uuid";
-import clsx from "clsx";
-
-type Filter = "All" | "Active" | "Completed";
+import Filters from "./Filters";
 
 export default function TodoList() {
   const [todoList, setTodoList] = useState<
     { id: string; title: string; isCompleted: boolean }[]
   >([]);
-  const [filter, setFilter] = useState<Filter>("All");
+  const [filter, setFilter] = useState("All");
 
   const filteredList = filterTodoList(todoList, filter);
 
@@ -85,34 +83,8 @@ export default function TodoList() {
         </ol>
         <div className="h-12 flex justify-between items-center px-5 text-sm text-filter">
           <p>{todoList.length} items left</p>
-          <div className="flex gap-3 font-bold">
-            <button
-              className={clsx(
-                filter === "All" ? "text-sky-500" : "",
-                "hover:text-filter-hover"
-              )}
-              onClick={() => setFilter("All")}
-            >
-              All
-            </button>
-            <button
-              className={clsx(
-                filter === "Active" ? "text-sky-500" : "",
-                "hover:text-filter-hover"
-              )}
-              onClick={() => setFilter("Active")}
-            >
-              Active
-            </button>
-            <button
-              className={clsx(
-                filter === "Completed" ? "text-sky-500" : "",
-                "hover:text-filter-hover"
-              )}
-              onClick={() => setFilter("Completed")}
-            >
-              Completed
-            </button>
+          <div className="hidden md:block">
+            <Filters currentFilter={filter} setFilter={setFilter} />
           </div>
           <button
             className="hover:text-filter-hover"
@@ -124,13 +96,16 @@ export default function TodoList() {
           </button>
         </div>
       </div>
+      <div className="md:hidden h-12 flex justify-center items-center px-5 text-sm text-filter bg-content my-5 rounded-md shadow-lg">
+        <Filters currentFilter={filter} setFilter={setFilter} />
+      </div>
     </>
   );
 }
 
 function filterTodoList(
   todoList: { id: string; title: string; isCompleted: boolean }[],
-  filter: Filter
+  filter: string
 ) {
   switch (filter) {
     case "Active":
